@@ -19,7 +19,6 @@ namespace BasicServerHTTPlistener
                 return;
             }
  
- 
             // Create a listener.
             HttpListener listener = new HttpListener();
 
@@ -101,7 +100,7 @@ namespace BasicServerHTTPlistener
                 Console.WriteLine("param2 = " + HttpUtility.ParseQueryString(request.Url.Query).Get("param2"));
                 Console.WriteLine("param3 = " + HttpUtility.ParseQueryString(request.Url.Query).Get("param3"));
                 Console.WriteLine("param4 = " + HttpUtility.ParseQueryString(request.Url.Query).Get("param4"));
-
+            
                 //
                 Console.WriteLine(documentContents);
 
@@ -109,7 +108,11 @@ namespace BasicServerHTTPlistener
                 HttpListenerResponse response = context.Response;
 
                 // Construct a response.
-                string responseString = "<HTML><BODY> Hello world!</BODY></HTML>";
+                string param1 = HttpUtility.ParseQueryString(request.Url.Query).Get("param1");
+                string param2 = HttpUtility.ParseQueryString(request.Url.Query).Get("param2");
+
+                string responseString = MyMethods.myMethod(param1, param2);
+
                 byte[] buffer = System.Text.Encoding.UTF8.GetBytes(responseString);
                 // Get a response stream and write the response to it.
                 response.ContentLength64 = buffer.Length;
