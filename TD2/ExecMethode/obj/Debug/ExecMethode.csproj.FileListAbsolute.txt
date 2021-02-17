@@ -1,0 +1,6 @@
+C:\Users\tacti\Documents\GitHub\eiin839\TD2\ExecMethode\bin\Debug\ExecMethode.exe.config
+C:\Users\tacti\Documents\GitHub\eiin839\TD2\ExecMethode\bin\Debug\ExecMethode.exe
+C:\Users\tacti\Documents\GitHub\eiin839\TD2\ExecMethode\bin\Debug\ExecMethode.pdb
+C:\Users\tacti\Documents\GitHub\eiin839\TD2\ExecMethode\obj\Debug\ExecMethode.csproj.CoreCompileInputs.cache
+C:\Users\tacti\Documents\GitHub\eiin839\TD2\ExecMethode\obj\Debug\ExecMethode.exe
+C:\Users\tacti\Documents\GitHub\eiin839\TD2\ExecMethode\obj\Debug\ExecMethode.pdb

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Net;
+using System.Reflection;
 using System.Text;
 using System.Web;
 
@@ -101,17 +102,27 @@ namespace BasicServerHTTPlistener
                 Console.WriteLine("param3 = " + HttpUtility.ParseQueryString(request.Url.Query).Get("param3"));
                 Console.WriteLine("param4 = " + HttpUtility.ParseQueryString(request.Url.Query).Get("param4"));
             
-                //
                 Console.WriteLine(documentContents);
+
+                string methodName = request.Url.LocalPath;
+                Console.WriteLine("methode name = " + methodName.Substring(1));
+                string result;
+
+                Type type = typeof(MyMethods);
+                MethodInfo method = type.GetMethod(methodName.Substring(1));
+                MyMethods c = new MyMethods(request.Url);
+                if(method != null)
+                {
+                    result = (string)method.Invoke(c, null);
+                } else
+                {
+                    result = "Do you mean : http://localhost:8080/myMethod?param1=param1T et plus de parametre si affinite";
+                }
 
                 // Obtain a response object.
                 HttpListenerResponse response = context.Response;
 
-                // Construct a response.
-                string param1 = HttpUtility.ParseQueryString(request.Url.Query).Get("param1");
-                string param2 = HttpUtility.ParseQueryString(request.Url.Query).Get("param2");
-
-                string responseString = MyMethods.myMethod(param1, param2);
+                string responseString = MyMethods.incrReload() + result + MyMethods.myMethodExe();
 
                 byte[] buffer = System.Text.Encoding.UTF8.GetBytes(responseString);
                 // Get a response stream and write the response to it.
