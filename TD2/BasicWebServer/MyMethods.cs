@@ -20,9 +20,8 @@ namespace BasicServerHTTPlistener
             System.Collections.Specialized.NameValueCollection parameters = HttpUtility.ParseQueryString(this.url.Query);
             string responseString = "<HTML><BODY> <h1>Question 4</h1> <br/> ";
 
-            foreach(string param in parameters.AllKeys) {
-                string[] values = parameters.AllKeys;
-                responseString += param + " ";
+            for(int i = 0; i < parameters.Count; i++) {
+                responseString += parameters.GetKey(i) + " : " + parameters.Get(i) + "</br>";
             }
 
             responseString += "<br/></HTML></BODY>";
@@ -58,9 +57,7 @@ namespace BasicServerHTTPlistener
         public static string incrReload()
         {
             nbrReload++;
-            return "<h1> Reload number = " + (nbrReload/2+1) + "</h1>";
+            return "<h1>Q7:  Reload number = " + (nbrReload/2+1) + "</h1>";
         }
     }
-
-    
 }

@@ -105,24 +105,27 @@ namespace BasicServerHTTPlistener
                 Console.WriteLine(documentContents);
 
                 string methodName = request.Url.LocalPath;
-                Console.WriteLine("methode name = " + methodName.Substring(1));
-                string result;
+                methodName = methodName.Substring(1);
+                string result = "";
 
                 Type type = typeof(MyMethods);
-                MethodInfo method = type.GetMethod(methodName.Substring(1));
+                MethodInfo method = type.GetMethod(methodName);
                 MyMethods c = new MyMethods(request.Url);
                 if(method != null)
                 {
                     result = (string)method.Invoke(c, null);
                 } else
                 {
-                    result = "Do you mean : http://localhost:8080/myMethod?param1=param1T et plus de parametre si affinite";
+                    if(methodName != "")
+                    {
+                        result = methodName + " n'est pas une methode valide";
+                    }
                 }
 
                 // Obtain a response object.
                 HttpListenerResponse response = context.Response;
 
-                string responseString = MyMethods.incrReload() + result + MyMethods.myMethodExe();
+                string responseString = MyMethods.incrReload() + "<a href='http://localhost:8080/myMethod?param1=test1&param2=test2'>Question 4</a> | <a href='http://localhost:8080/myMethodExe'>Question 5</a> </br>" + result;
 
                 byte[] buffer = System.Text.Encoding.UTF8.GetBytes(responseString);
                 // Get a response stream and write the response to it.

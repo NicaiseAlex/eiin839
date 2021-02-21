@@ -57,8 +57,6 @@ namespace BasicServerHTTPlistener
                 HttpListenerContext context = listener.GetContext();
                 HttpListenerRequest request = context.Request;
 
-                DisplayHeader(request);
-
                 string documentContents;
                 using (Stream receiveStream = request.InputStream)
                 {
@@ -73,8 +71,15 @@ namespace BasicServerHTTPlistener
                 // Obtain a response object.
                 HttpListenerResponse response = context.Response;
 
+                string res;
+                int i = 0;
+                foreach (HttpRequestHeader headerEnum in Enum.GetValues(typeof(HttpRequestHeader))) {
+                    Console.WriteLine(i + " " + headerEnum);
+                    i++;
+                }
+
                 // Construct a response.
-                string responseString = "<HTML><BODY> Hello world!</BODY></HTML>";
+                string responseString = "<HTML><BODY>" + DisplayHeader(request) + "</BODY></HTML>";
                 byte[] buffer = System.Text.Encoding.UTF8.GetBytes(responseString);
                 // Get a response stream and write the response to it.
                 response.ContentLength64 = buffer.Length;
@@ -87,22 +92,27 @@ namespace BasicServerHTTPlistener
             // listener.Stop();
         }
 
-        public static void DisplayHeader(HttpListenerRequest request) {
+        public static string DisplayHeader(HttpListenerRequest request) {
             System.Collections.Specialized.NameValueCollection headers = request.Headers;
-
+            string res = "";
             foreach (string key in headers.AllKeys) {
                 string[] values = headers.GetValues(key);
 
                 if (values.Length > 0) {
                     Console.WriteLine("{0} : ", key);
+                    res += "<h4>" + key + " :</h4>";
                     foreach (string value in values) {
                         Console.WriteLine(" - {0}", value);
+                        res += " - " + value + "</br>";
                     }
                 }
                 else {
                     Console.WriteLine("No value in the header.");
+                    res = "No value in the header.";
                 }
             }
+
+            return res;
         }
     }
 }
