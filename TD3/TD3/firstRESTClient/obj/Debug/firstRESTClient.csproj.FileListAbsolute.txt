@@ -1,0 +1,7 @@
+C:\Users\tacti\Documents\GitHub\eiin839\TD3\TD3\firstRESTClient\obj\Debug\firstRESTClient.csproj.CoreCompileInputs.cache
+C:\Users\tacti\Documents\GitHub\eiin839\TD3\TD3\firstRESTClient\bin\Debug\firstRESTClient.exe.config
+C:\Users\tacti\Documents\GitHub\eiin839\TD3\TD3\firstRESTClient\bin\Debug\firstRESTClient.exe
+C:\Users\tacti\Documents\GitHub\eiin839\TD3\TD3\firstRESTClient\bin\Debug\firstRESTClient.pdb
+C:\Users\tacti\Documents\GitHub\eiin839\TD3\TD3\firstRESTClient\obj\Debug\firstRESTClient.exe
+C:\Users\tacti\Documents\GitHub\eiin839\TD3\TD3\firstRESTClient\obj\Debug\firstRESTClient.pdb
+C:\Users\tacti\Documents\GitHub\eiin839\TD3\TD3\firstRESTClient\obj\Debug\firstRESTClient.csprojAssemblyReference.cache
